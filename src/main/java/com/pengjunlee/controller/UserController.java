@@ -1,6 +1,6 @@
 package com.pengjunlee.controller;
 
-import com.pengjunlee.domain.User;
+import com.pengjunlee.domain.UserEntity;
 import com.pengjunlee.result.ResponseResult;
 import com.pengjunlee.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +58,7 @@ public class UserController {
      */
     @RequestMapping("/update")
     @CachePut(key = "T(String).valueOf('user').concat(#user.id)", condition = "#id>0")
-    public Object updateUser(User user) {
+    public Object updateUser(UserEntity user) {
         return userService.updateUser(user);
     }
 

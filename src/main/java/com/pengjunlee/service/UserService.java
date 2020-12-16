@@ -1,6 +1,6 @@
 package com.pengjunlee.service;
 
-import com.pengjunlee.domain.User;
+import com.pengjunlee.domain.UserEntity;
 
 /**
  * @author pengjunlee
@@ -8,9 +8,9 @@ import com.pengjunlee.domain.User;
  */
 public interface UserService {
 
-    User getUserById(Long id);
+    UserEntity getUserById(Long id);
 
-    User updateUser(User user);
+    UserEntity updateUser(UserEntity user);
 
     void deleteUserById(Long id);
 }

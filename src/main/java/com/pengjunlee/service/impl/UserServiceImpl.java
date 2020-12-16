@@ -1,6 +1,6 @@
 package com.pengjunlee.service.impl;
 
-import com.pengjunlee.domain.User;
+import com.pengjunlee.domain.UserEntity;
 import com.pengjunlee.service.UserService;
 import org.springframework.stereotype.Service;
 
@@ -12,18 +12,18 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     @Override
-    public User getUserById(Long id) {
+    public UserEntity getUserById(Long id) {
         System.out.println("调用方法：getUserById ，参数：" + id);
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return new User(id, "User" + id);
+        return new UserEntity(id, "UserEntity" + id);
     }
 
     @Override
-    public User updateUser(User user) {
+    public UserEntity updateUser(UserEntity user) {
         System.out.println("更新用户：" + user);
         return user;
     }

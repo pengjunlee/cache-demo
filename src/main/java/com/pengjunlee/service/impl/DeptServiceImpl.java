@@ -1,13 +1,9 @@
 package com.pengjunlee.service.impl;
 
-import com.pengjunlee.domain.Dept;
-import com.pengjunlee.domain.User;
+import com.pengjunlee.domain.DeptEntity;
 import com.pengjunlee.service.DeptService;
-import com.pengjunlee.service.UserService;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-
-import java.util.Random;
 
 /**
  * @author pengjunlee
@@ -18,24 +14,24 @@ public class DeptServiceImpl implements DeptService {
 
     @Override
     @Cacheable(cacheNames = {"dept_cache"}, keyGenerator = "deptKeyGenerator")
-    public Dept getDeptById(Long id) {
+    public DeptEntity getDeptById(Long id) {
         System.out.println("调用方法：getDeptById ，参数：" + id);
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return new Dept(id, "Dept" + id);
+        return new DeptEntity(id, "DeptEntity" + id);
     }
 
     @Override
-    public Dept getDeptByName(String name) {
+    public DeptEntity getDeptByName(String name) {
         System.out.println("调用方法：getDeptByName ，参数：" + name);
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return new Dept(1L, name);
+        return new DeptEntity(1L, name);
     }
 }

@@ -9,21 +9,20 @@ import java.io.Serializable;
  * @create 2020-11-23 9:22
  */
 @Data
-public class User implements Serializable {
+public class UserEntity extends BaseEntity {
 
-    private Long id;
     private String name;
-    private Dept dept;
+    private DeptEntity dept;
 
-    public User() {
+    public UserEntity() {
     }
 
-    public User(Long id, String name) {
+    public UserEntity(Long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public User(Long id, String name, Dept dept) {
+    public UserEntity(Long id, String name, DeptEntity dept) {
         this.id = id;
         this.name = name;
         this.dept = dept;
@@ -31,9 +30,9 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+        return "UserEntity{" +
+                "id=" + this.id +
+                ", name='" + this.name + '\'' +
                 '}';
     }
 }

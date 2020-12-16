@@ -1,4 +1,4 @@
-package com.pengjunlee.config;
+package com.pengjunlee.cache;
 
 import org.springframework.boot.autoconfigure.condition.ConditionOutcome;
 import org.springframework.boot.autoconfigure.condition.SpringBootCondition;

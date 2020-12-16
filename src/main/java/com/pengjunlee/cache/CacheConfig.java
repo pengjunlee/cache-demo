@@ -1,8 +1,12 @@
-package com.pengjunlee.config;
+package com.pengjunlee.cache;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.Cache;
+import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
+import org.springframework.cache.interceptor.CacheErrorHandler;
 import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Conditional;
@@ -26,7 +30,48 @@ import java.time.Duration;
  */
 @Configuration
 @EnableCaching
-public class CacheConfig {
+@Slf4j
+public class CacheConfig extends CachingConfigurerSupport {
+
+    /**
+     * 添加自定义缓存异常处理
+     * 当缓存读写异常时,忽略异常
+     */
+    @Bean
+    @Override
+    public CacheErrorHandler errorHandler() {
+
+        CacheErrorHandler cacheErrorHandler = new CacheErrorHandler() {
+
+            @Override
+            public void handleCachePutError(RuntimeException exception, Cache cache,
+                                            Object key, Object value) {
+                redisErrorException(exception, key);
+            }
+
+            @Override
+            public void handleCacheGetError(RuntimeException exception, Cache cache,
+                                            Object key) {
+                redisErrorException(exception, key);
+            }
+
+            @Override
+            public void handleCacheEvictError(RuntimeException exception, Cache cache,
+                                              Object key) {
+                redisErrorException(exception, key);
+            }
+
+            @Override
+            public void handleCacheClearError(RuntimeException exception, Cache cache) {
+                redisErrorException(exception, null);
+            }
+        };
+        return cacheErrorHandler;
+    }
+
+    protected void redisErrorException(Exception exception, Object key) {
+        log.error("缓存异常：key=[{}]", key, exception);
+    }
 
     /**
      * 基于SpringBoot2 对 RedisCacheManager 的自定义配置
@@ -51,7 +96,6 @@ public class CacheConfig {
                         // 配置同步修改或删除 put/evict
                         .transactionAware()
                         .build();
-
         return redisCacheManager;
     }
 
@@ -89,6 +133,8 @@ public class CacheConfig {
     }
 
     /**
+     * 自定义部门缓存Key生成策略
+     *
      * @return
      */
     @Bean(name = "deptKeyGenerator")

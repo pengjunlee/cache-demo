@@ -9,25 +9,24 @@ import java.io.Serializable;
  * @create 2020-11-23 9:22
  */
 @Data
-public class Dept implements Serializable {
+public class DeptEntity extends BaseEntity {
 
-    private Long id;
     private String name;
 
 
-    public Dept() {
+    public DeptEntity() {
     }
 
-    public Dept(Long id, String name) {
+    public DeptEntity(Long id, String name) {
         this.id = id;
         this.name = name;
     }
 
     @Override
     public String toString() {
-        return "Dept{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+        return "DeptEntity{" +
+                "id=" + this.id +
+                ", name='" + this.name + '\'' +
                 '}';
     }
 }

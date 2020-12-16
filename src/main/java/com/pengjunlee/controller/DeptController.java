@@ -1,5 +1,7 @@
 package com.pengjunlee.controller;
 
+import com.pengjunlee.ratelimit.RateLimitClient;
+import com.pengjunlee.ratelimit.Token;
 import com.pengjunlee.service.DeptService;
 import com.pengjunlee.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +23,17 @@ public class DeptController {
     @Autowired
     private DeptService deptService;
 
+
+    @Autowired
+    private RateLimitClient rateLimitClient;
+
     @RequestMapping("/getbyid")
     public Object getDeptById(@RequestParam(name = "id", required = true) Long id) {
-        return deptService.getDeptById(id);
+        Token dept = rateLimitClient.accquireToken("dept", 9);
+        if (dept.isSuccess()) {
+            return deptService.getDeptById(id);
+        }
+        return "当前访问人数较多，请稍后再试！";
     }
 
     @RequestMapping("/getbyname")

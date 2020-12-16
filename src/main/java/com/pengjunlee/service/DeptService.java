@@ -1,6 +1,6 @@
 package com.pengjunlee.service;
 
-import com.pengjunlee.domain.Dept;
+import com.pengjunlee.domain.DeptEntity;
 
 /**
  * @author pengjunlee
@@ -8,7 +8,7 @@ import com.pengjunlee.domain.Dept;
  */
 public interface DeptService {
 
-    Dept getDeptById(Long id);
+    DeptEntity getDeptById(Long id);
 
-    Dept getDeptByName(String name);
+    DeptEntity getDeptByName(String name);
 }
