@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * 全局异常捕获
  */
-//@ControllerAdvice
+@ControllerAdvice
 @Slf4j
 public class ExceptionHandle {
 

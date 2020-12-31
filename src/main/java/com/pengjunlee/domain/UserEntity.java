@@ -8,10 +8,12 @@ import java.io.Serializable;
  * @author pengjunlee
  * @create 2020-11-23 9:22
  */
+
 @Data
 public class UserEntity extends BaseEntity {
 
     private String name;
+
     private DeptEntity dept;
 
     public UserEntity() {

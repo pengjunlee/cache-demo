@@ -6,7 +6,7 @@ server:
     context-path: @server-servlet-context-path@
 
 cache:
-  use-redis: true
+  use-redis: false
 
 spring:
   jackson:

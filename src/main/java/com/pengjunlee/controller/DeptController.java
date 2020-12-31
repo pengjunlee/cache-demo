@@ -2,6 +2,7 @@ package com.pengjunlee.controller;
 
 import com.pengjunlee.ratelimit.RateLimitClient;
 import com.pengjunlee.ratelimit.Token;
+import com.pengjunlee.result.ResponseResult;
 import com.pengjunlee.service.DeptService;
 import com.pengjunlee.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/dept")
+@ResponseResult
 public class DeptController {
 
     @Autowired
